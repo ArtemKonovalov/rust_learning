@@ -3,8 +3,8 @@ use std::io::{ErrorKind, Read};
 
 fn main() {
     let file_name = "src/main.rs";
-    let content = File::open(file_name);
-    let mut file = match content {
+    let open_file_result = File::open(file_name);
+    let mut file = match open_file_result {
         Ok(file) => file,
         Err(error) => match error.kind() {
             ErrorKind::NotFound => {
@@ -14,7 +14,7 @@ fn main() {
                     Err(err) => panic!("Failed to create a file {file_name}: {err:?}"),
                 }
             }
-            other => panic!("Not recoverable error: {other:?}")
+            other_error => panic!("Not recoverable error: {other_error:?}")
         }
     };
 

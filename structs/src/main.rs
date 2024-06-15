@@ -39,7 +39,7 @@ fn main() {
         area_tuple(rect1)
     );
 
-    // Structs -------
+    // structs -------
     let rect1 = Rectangle {
         width: 30,
         height: 50
