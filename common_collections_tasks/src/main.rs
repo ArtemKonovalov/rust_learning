@@ -1,6 +1,7 @@
 use vector_analyzer::mode;
 use vector_analyzer::median;
 use string_convertor::pig_latin;
+use text_interface::start;
 mod vector_analyzer;
 mod string_convertor;
 mod text_interface;
@@ -15,6 +16,8 @@ fn main() {
     println!("Median: {median}");
 
     modify_and_print_words(vec!["first", "apple"]);
+
+    start();
 }
 
 fn modify_and_print_words(words: Vec<&str>) {
