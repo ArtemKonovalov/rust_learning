@@ -1,6 +1,6 @@
-use vector_analyzer::median;
 use vector_analyzer::mode;
-
+use vector_analyzer::median;
+use string_convertor::pig_latin;
 mod vector_analyzer;
 mod string_convertor;
 mod text_interface;
@@ -13,5 +13,13 @@ fn main() {
 
     println!("Mode:   {mode}");
     println!("Median: {median}");
+
+    modify_and_print_words(vec!["first", "apple"]);
 }
 
+fn modify_and_print_words(words: Vec<&str>) {
+    for original_word in words {
+        let modified_word = pig_latin(original_word);
+        println!("Original word '{original_word}' is changed to '{modified_word}'");
+    }
+}
