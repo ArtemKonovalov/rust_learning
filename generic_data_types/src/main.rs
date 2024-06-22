@@ -9,9 +9,21 @@ fn largest<T: PartialOrd>(list: &[T]) -> &T {
     largest
 }
 
-struct Point<T, U> {
+struct Point<T> {
     x: T,
-    y: U,
+    y: T,
+}
+
+impl<T> Point<T> {
+    fn x(&self) -> &T {
+        &self.x
+    }
+}
+
+impl Point<f32> {
+    fn distance_from_origin(&self) -> f32 {
+        (self.x.powi(2) + self.y.powi(2)).sqrt()
+    }
 }
 
 fn main() {
@@ -23,7 +35,9 @@ fn main() {
     let result = largest(&char_list);
     println!("The largest char is {result}");
 
-    let integer = Point { x: 5, y: 10 };
-    let float = Point { x: 1.0, y: 4.0 };
-    let int_and_float = Point { x: 5, y: 4.0 };
+    let p = Point { x: 5, y: 10 };
+    println!("p.x = {}", p.x());
+
+    let fp: Point<f32> = Point { x: 3.2, y: 5.5 };
+    println!("Distance from origin {}", fp.distance_from_origin())
 }
