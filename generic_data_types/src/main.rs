@@ -9,6 +9,11 @@ fn largest<T: PartialOrd>(list: &[T]) -> &T {
     largest
 }
 
+struct Point<T> {
+    x: T,
+    y: T,
+}
+
 fn main() {
     let number_list = vec![34, 50, 25, 100, 65];
     let result = largest(&number_list);
@@ -17,4 +22,8 @@ fn main() {
     let char_list = vec!['a', 'b', 'c', 'd'];
     let result = largest(&char_list);
     println!("The largest char is {result}");
+
+    let integer = Point { x: 5, y: 10 };
+    let float = Point { x: 1.0, y: 4.0 };
+    // let wont_work = Point{ x: 5, y: 4.0 };
 }
