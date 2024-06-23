@@ -1,3 +1,4 @@
+use std::fmt::{Debug, Display};
 use generic_data_types::{Summary, Tweet, NewsArticle};
 
 fn largest<T: PartialOrd>(list: &[T]) -> &T {
@@ -63,25 +64,56 @@ fn main() {
     let p3 = p1.mixup(p2);
     println!("p3.x = {}, p3.y = {}", p3.x, p3.y);
 
-    let tweet = Tweet {
-        username: String::from("horse_ebooks"),
-        content: String::from(
-            "of course, as you probably already know, people"
-        ),
-        reply: false,
-        retweet: false,
-    };
+    let tweet = returns_summarizable(true);
+    notify(&tweet);
+    let article = returns_summarizable(false);
+    notify(&article);
+}
 
-    println!("1 new tweet: {}", tweet.summarize());
+// pub fn notify(item: &impl Summary) {
+pub fn notify<T: Summary>(item: &T) {
+    println!("Breaking news! {}", item.summarize());
+}
 
-    let article = NewsArticle {
-        headline: String::from("Penguins win the Stanley Cup Championship!"),
-        location: String::from("Pittsburgh, PA, USA"),
-        author: String::from("Iceburgh"),
-        content: String::from(
-            "The Pittsburgh Penguins once again are the best \
-            hockey team in the NHL."),
-    };
+pub fn notify_2(item: &(impl Summary + Display)) {
+    todo!("")
+}
 
-    println!("New article available! {}", article.summarize());
+pub fn notify_2_1<T: Summary + Display>(item: &T) {
+    todo!("")
+}
+
+fn some_function<T: Display + Clone, U: Clone + Debug>(t: &T, u: &U) -> i32 {
+    todo!("")
+}
+
+fn some_function_2<T, U>(t: &T, u: &U) -> i32
+    where
+        T: Display + Clone,
+        U: Clone + Debug,
+{
+    todo!("")
+}
+
+fn returns_summarizable(is_tweet: bool) -> impl Summary {
+    // if is_tweet {
+        Tweet {
+            username: String::from("horse_ebooks"),
+            content: String::from(
+                "of course, as you probably already know, people"
+            ),
+            reply: false,
+            retweet: false,
+        }
+    todo!("Wouldn't work in this form of expression")
+    // } else {
+    //     NewsArticle {
+    //         headline: String::from("Penguins win the Stanley Cup Championship!"),
+    //         location: String::from("Pittsburgh, PA, USA"),
+    //         author: String::from("Iceburgh"),
+    //         content: String::from(
+    //             "The Pittsburgh Penguins once again are the best \
+    //         hockey team in the NHL."),
+    //     }
+    // }
 }
