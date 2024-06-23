@@ -1,3 +1,5 @@
+use generic_data_types::{Summary, Tweet, NewsArticle};
+
 fn largest<T: PartialOrd>(list: &[T]) -> &T {
     let mut largest = &list[0];
     for item in list {
@@ -59,5 +61,27 @@ fn main() {
     let p2 = Point2 { x: "Hello", y: 'c' };
 
     let p3 = p1.mixup(p2);
-    println!("p3.x = {}, p3.y = {}", p3.x, p3.y)
+    println!("p3.x = {}, p3.y = {}", p3.x, p3.y);
+
+    let tweet = Tweet {
+        username: String::from("horse_ebooks"),
+        content: String::from(
+            "of course, as you probably already know, people"
+        ),
+        reply: false,
+        retweet: false,
+    };
+
+    println!("1 new tweet: {}", tweet.summarize());
+
+    let article = NewsArticle {
+        headline: String::from("Penguins win the Stanley Cup Championship!"),
+        location: String::from("Pittsburgh, PA, USA"),
+        author: String::from("Iceburgh"),
+        content: String::from(
+            "The Pittsburgh Penguins once again are the best \
+            hockey team in the NHL."),
+    };
+
+    println!("New article available! {}", article.summarize());
 }
