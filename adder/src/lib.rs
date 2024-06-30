@@ -110,7 +110,7 @@ mod tests {
     // To assert that an operation returns an Err variant, don’t use the question mark operator
     // on the Result<T, E> value. Instead, use assert!(value.is_err()).
     #[test]
-    fn it_works() -> Result<(), String> {
+    fn it_works_with_results_instead_of_panicking() -> Result<(), String> {
         if 2 + 2 == 4 {
             Ok(())
         } else {
